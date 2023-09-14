@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 
 import "./App.css";
 
@@ -6,8 +6,18 @@ function App() {
   const [length, setLength] = useState(4);
   const [number, setNumber] = useState(false);
   const [character, setCharacter] = useState(false);
-
   const [password, setPassword] = useState("");
+
+  //useof ref
+  const passwordRef = useRef(null);
+
+  const copyPassswordtoClip = useCallback(() => {
+    //how to select and copy to clipboard
+    passwordRef.current?.select();
+    // passwordRef.current?.setSelectionRange(0, 3);
+
+    window.navigator.clipboard.writeText(password);
+  }, [password]);
 
   let generatPass = function () {
     let pass = "";
@@ -15,7 +25,8 @@ function App() {
 
     if (number) {
       str += "0123456789";
-    } if (character) {
+    }
+    if (character) {
       str += "@#&%$!<=+-_)(*,.)>";
     }
 
@@ -42,28 +53,32 @@ function App() {
 
   return (
     <>
-      <h1 className="text-4xl text-center text-white">
-        Passsword Generator {password}
+      <h1 className="text-5xl mt-20 text-center font-bold ">
+        Passsword Generator
       </h1>
 
-      <div className="w-full max-w-xl mx-auto my-8 py-6 px-4 shadow-md rounded-lg text-orange-600 bg-gray-500">
-        {" "}
-        test
-        <div className="flex shadow rounded-lg overflow-hidden mb-4">
+      <div className="w-full max-w-xl mx-auto my-8 py-10 px-4 shadow-md rounded-lg text-orange-600 bg-gray-500 text-center font-bold ">
+        
+        Generate your pasword
+        <div className="flex  shadow rounded-lg overflow-hidden mb-4">
           <input
             type="text"
             value={password}
             className="w-full px-3 py-1  font-semibold"
             placeholder="password"
             readOnly
+            ref={passwordRef}
           />
 
-          <button className="bg-cyan-500 px-3  text-slate-950 font-extrabold">
+          <button
+            onClick={copyPassswordtoClip}
+            className="bg-cyan-500 px-3  text-slate-950 font-extrabold"
+          >
             Copy
           </button>
         </div>
-        <div className="flex text-sm gap-x-2 text-white">
-          <div className="flex items-center gap-x-1">
+        <div className="pt-5 flex text-sm gap-x-2 text-white font-bold">
+          <div className="flex items-center bg-blue-400 px-3 py-1 rounded-lg  gap-x-1">
             <input
               type="range"
               min={4}
@@ -102,8 +117,6 @@ function App() {
             />
             <label>Character-Allow</label>
           </div>
-
-
         </div>
       </div>
     </>
