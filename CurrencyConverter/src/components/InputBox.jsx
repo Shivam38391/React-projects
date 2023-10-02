@@ -4,9 +4,9 @@ import React  from "react";
 function InputBox({
   label,
   amount,
-  onAmountChange,
+  onAmountChange, //we cannot pass default value to the onAmountChangebeacause it is a function
   onCurrencyChange,
-  currencyOptions = [],
+  currencyOptions = [], //deault array of currency options
   selectCurrency = "usd",
   amountDisable = false,
   currencyDisable = false,
@@ -21,17 +21,21 @@ function InputBox({
   return (
     <div className={`bg-white p-3 rounded-lg text-sm flex ${className}`}>
       <div className="w-1/2">
-        <label  htmFor = {amountInputId}  className="text-black/40 mb-2 inline-block"> { label } </label>
+        <label 
+         htmfor = {amountInputId}  className="text-black/40 mb-2 inline-block">
+          
+        { label } 
+        
+        </label>
+
         <input
 
          id= { amountInputId }
           className="outline-none w-full bg-transparent py-1.5"
           type="number"
           placeholder="Amount"
-
           disabled= {amountDisable}
           value={ amount }
-
           onChange={ (e) => onAmountChange && onAmountChange( Number(e.target.value) ) }
 
         />
@@ -45,19 +49,22 @@ function InputBox({
             disabled= { currencyDisable }
         >
       
+      {/* loop the option */}
           
-      {currencyOptions.map( (currency) =>
-      (
-        <option key={ currency } value={currency}>
-        
-        { currency }
+      {
 
+      currencyOptions.map( (c) =>
+
+      (
+        <option key={ c } value={c}>
+        { c }
         </option>
       )
-       )}         
 
+       )
+       
+       }         
 
-   
 
         </select>
 

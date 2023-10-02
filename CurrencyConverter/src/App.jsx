@@ -1,11 +1,12 @@
 import { useState } from "react";
-
 import InputBox from "./components/InputBox";
 import useCurrencyInfo from "./hooks/useCurrency";
-
 import "./App.css";
 
+
+
 function App() {
+
   const [amount, setAmount] = useState(0);
   const [from, setfrom] = useState("usd");
   const [to, setto] = useState("inr");
@@ -13,10 +14,7 @@ function App() {
 
   const currencyInfo = useCurrencyInfo(from);
   console.log("currencyInfo", currencyInfo);
-
   const options = Object.keys(currencyInfo);
-
-  console.log("options", options);
 
   const swap = () => {
     setfrom(to);
@@ -26,9 +24,12 @@ function App() {
     setAmount(conversionAmount);
   };
 
+
+
   const convert = () => {
     setconversionAmount(amount * currencyInfo[to]); // coverted amount
   };
+
 
   return (
     <div
@@ -37,12 +38,15 @@ function App() {
         backgroundImage: `url('https://plus.unsplash.com/premium_photo-1679397743664-f9384e6ad49d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80')`,
       }}
     >
+
+
+
       <div className="w-full">
         <div className="w-full max-w-md mx-auto border border-gray-60 rounded-lg p-5 backdrop-blur-sm bg-white/30">
           <form onSubmit={(e) => { e.preventDefault(); 
-          
           //we want to call a method
           convert()
+
           }}>
 
             <div className="w-full mb-1">
@@ -54,7 +58,7 @@ function App() {
               label="From" 
               amount={amount}
               currencyOptions={options}
-              onCurrencyChange={(currency) => setAmount(amount)}
+              onCurrencyChange={(currency) => setfrom(currency)}
               onAmountChange={(amount) => setAmount(amount)}
               selectCurrency={from}
 
@@ -80,7 +84,7 @@ function App() {
               currencyOptions={options}
               onCurrencyChange={(currency) => setto(currency)}
 
-              selectCurrency={from}
+              selectCurrency={to}
               amountDisable
               
               
