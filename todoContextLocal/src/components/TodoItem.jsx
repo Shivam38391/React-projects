@@ -10,7 +10,7 @@ function TodoItem({ todo }) {
 
 
     const editTodo = () => {
-        updatedTodo(todo.id, {...todo, todo: todoMsg})
+        updatedTodo(todo.id, {...todo, todo:todoMsg})
         setIsTodoEditable(false)
     }
 

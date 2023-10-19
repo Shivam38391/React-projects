@@ -15,16 +15,26 @@ function App() {
   const updatedTodo = (id, todo) => {
 
     console.log(id, "updated");
-    setTodos((prev) =>
-      prev.map((eachTodo) => {
-        if (eachTodo.id === id) {
-          todo;
-        } else {
-          eachTodo
-        }
-      })
-    )
+    setTodos((prev) => prev.map((eachTodo) => (eachTodo.id === id ? todo: eachTodo)))
   };
+
+
+  // const updatedTodo = (id, todo) => {
+
+  //   console.log(id, "updated");
+  //   setTodos((prev) => prev.map((eachTodo) => {
+  //     if(eachTodo.id === id){
+  //      return todo  //when we use currly braces we need to put return
+  //     }else{
+  //       return eachTodo
+  //     }
+  //   } ))
+  // };
+
+
+
+
+
 
 
   const deleteTodo = (id) => {
@@ -44,6 +54,7 @@ function App() {
 
   useEffect(() => {
     const todos = JSON.parse( localStorage.getItem('todos'))
+    console.log("useEffect is run",todos);
     if ( todos && todos.length > 0) {
       setTodos(todos)
     }
