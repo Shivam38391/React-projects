@@ -88,6 +88,9 @@ useEffect(() => {
 
             {todos.map((todo)=> (
               <div key={ todo.id }   className="w-full">
+
+                  <h5  className="text-left">{new Date(todo.id).toDateString()} / {new Date(todo.id).toLocaleTimeString()} </h5>
+
                 <TodoItem todo = {todo}/>
               </div>
 
