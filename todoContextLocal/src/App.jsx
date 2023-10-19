@@ -13,20 +13,24 @@ function App() {
   };
 
   const updatedTodo = (id, todo) => {
+
+    console.log(id, "updated");
     setTodos((prev) =>
       prev.map((eachTodo) => {
         if (eachTodo.id === id) {
           todo;
         } else {
-          eachTodo;
+          eachTodo
         }
       })
-    );
+    )
   };
 
 
   const deleteTodo = (id) => {
-    setTodos( (prev) => prev.filter( (eachTodo) => eachTodo !== id ) ) // filter works when value is true
+    console.log(id, 'delete')
+    setTodos( (prev) => prev.filter( (eachTodo) => eachTodo.id !== id ) ) // filter works when value is true
+    console.log(todos);
   }
 
 
@@ -71,7 +75,12 @@ useEffect(() => {
             {/*Loop and Add TodoItem here */}
 
 
-            {/* <TodoItem/> */}
+            {todos.map((todo)=> (
+              <div key={ todo.id }   className="w-full">
+                <TodoItem todo = {todo}/>
+              </div>
+
+            ))}
 
           </div>
         </div>
