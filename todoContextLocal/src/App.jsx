@@ -9,12 +9,12 @@ function App() {
   const [todos, setTodos] = useState([]); //by default empty arrays
 
   const addTodo = (todo) => {
+    console.log("addtodo clg",{ id: Date.now(), ...todo });
     setTodos((prev) => [{ id: Date.now(), ...todo }, ...prev]);
+
   };
 
   const updatedTodo = (id, todo) => {
-
-    console.log(id, "updated");
     setTodos((prev) => prev.map((eachTodo) => (eachTodo.id === id ? todo: eachTodo)))
   };
 
@@ -33,20 +33,13 @@ function App() {
 
 
 
-
-
-
-
   const deleteTodo = (id) => {
-    console.log(id, 'delete')
     setTodos( (prev) => prev.filter( (eachTodo) => eachTodo.id !== id ) ) // filter works when value is true
-    console.log(todos);
   }
 
 
 
   const toggleComplete = (id) => {
-
     setTodos( (prev) => prev.map((eachTodo) => eachTodo.id === id ? {...eachTodo , completed: !eachTodo.completed} : eachTodo ) )
 
   }
@@ -54,10 +47,11 @@ function App() {
 
   useEffect(() => {
     const todos = JSON.parse( localStorage.getItem('todos'))
-    console.log("useEffect is run",todos);
     if ( todos && todos.length > 0) {
       setTodos(todos)
     }
+
+    console.log(todos);
   }, [])
   
 
