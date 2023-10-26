@@ -19,16 +19,16 @@ function AddTodo() {
   return (
     <>
     
-    <form onSubmit={ addTodoHandler } className='' >
+    <form  onSubmit={ addTodoHandler } className='  mb-4' >
 
-        <input className='' type="text" name="" id=""
+        <input className=' text-gray-50 bg-cyan-300 px-4 py-2 rounded' type="text" name="" id=""
         placeholder='Enter Todo'
         
         value={ input }
         onChange={ (e) => setInput(e.target.value) }
         />
 
-        <button type="submit">AddTodo</button>
+        <button className='px-4 py-2 bg-purple-600 rounded-sm text-yellow-50 font-bold m-2' type="submit">AddTodo</button>
 
     </form>
     
